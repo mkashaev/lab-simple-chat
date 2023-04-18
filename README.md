@@ -21,6 +21,15 @@ Docker - For up and run containerized Redis instance
 docker pull redis:alpine
 docker run --name chat-redis -p 6379:6379 -d redis
 ```
+To connect to redis-cli
+```
+docker run -it \             # Run interactive terminal mode
+  --link chat-redis:redis \  # Link redis as alias of chat-redis container
+  --rm redis \               # Remove docker container when it exist
+  redis-cli \                # Run redis-cli
+  -h redis \                 # Connect to redis hostname
+  -p 6379                    # To port
+```
 
 ### Setup server
 ```
@@ -94,7 +103,7 @@ React.useEffect(() => {
 ```
 npm run dev
 ```
-1. On one tab connect to 3001 port on another to 3001
+1. On one tab connect to 3001 port on another to 3002
 2. Put messages to each browser
 3. You should see the same messages on both
 
